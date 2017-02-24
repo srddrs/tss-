@@ -1,0 +1,493 @@
+//
+//  tss-Prefix.pch
+//  tss
+//
+//  Created by admin on 17/2/14.
+//  Copyright © 2017年 com.yunlaila. All rights reserved.
+//
+
+#ifndef tss_Prefix_pch
+#define tss_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* tss_Prefix_pch */
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+
+
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
+
+//三方 SDWeb
+#import "UIImageView+UIActivityIndicatorForSDWebImage.h"
+#import "SDWebImageManager.h"
+#import "SDImageCache.h"
+#import "UIImageView+WebCache.h"
+#import "SDWebImageCompat.h"
+#import "UIImageView+HighlightedWebCache.h"
+#import "SDWebImageDownloaderOperation.h"
+#import "UIButton+WebCache.h"
+#import "SDWebImagePrefetcher.h"
+#import "UIView+WebCacheOperation.h"
+#import "UIImage+MultiFormat.h"
+#import "SDWebImageOperation.h"
+#import "SDWebImageDownloader.h"
+#if !TARGET_OS_TV
+#import "MKAnnotationView+WebCache.h"
+#endif
+#import "SDWebImageDecoder.h"
+#import "UIImage+WebP.h"
+#import "UIImage+GIF.h"
+#import "NSData+ImageContentType.h"
+//三方 键盘解决
+#import "IQKeyboardManager.h"
+//三方
+#import "YYModel.h"
+#import "MJRefresh.h"
+//三方 选项
+#import "HMSegmentedControl.h"
+//三方
+#import "SSNCountdownButton.h"
+
+
+
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
+
+#import "YLLBaseViewController.h"
+#import "AppDelegate.h"
+#import "AFNetworking.h"  //网络请求
+#import "MBProgressHUD+Add.h"
+#import "AppTool.h"
+#import "Reachability.h"
+
+#import "KeychainItemWrapper.h"
+
+//主要
+#import "YLLWebViewController.h"
+#import "ResponseObject.h"
+#import "NHNetworkHelper.h"
+#import "AppTool.h"
+#import "LoginViewController.h"
+#import "YLLNavigationController.h"
+#import "YLLWhiteNavViewController.h"
+#import "YLLTabBarController.h"
+#import "YLLBaseViewController.h"
+
+//扩展
+#import "MBProgressHUD+NH.h"
+#import "NSData+Utility.h"
+#import "NSDate+Utility.h"
+#import "NSMutableDictionary+Utility.h"
+#import "NSObject+Utility.h"
+#import "NSString+Utility.h"
+#import "UIAlertView+Utility.h"
+#import "UIColor+Utility.h"
+#import "UIImage+Utility.h"
+#import "UIView+Utility.h"
+#import "UIBarButtonItem+Utility.h"
+#import "UILabel+Utility.h"
+#import "UITabbleView+EmptyData.h"
+#import "UICollectionView+EmptyData.h"
+#endif
+
+
+
+#define ISAPPSTORE 1
+
+#define MYBUG
+
+#ifdef MYBUG
+#define NSLog(...) NSLog(@"%s第%d行 \n%@\n\n",__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__])
+#else
+#define NSLog(...)
+#endif
+
+#if TARGET_OS_IPHONE
+//iPhone Device
+#endif
+#if TARGET_IPHONE_SIMULATOR
+//iPhone Simulator
+#endif
+
+//GCD - 一次性执行
+#define kDISPATCH_ONCE_BLOCK(onceBlock) static dispatch_once_t onceToken; dispatch_once(&onceToken, onceBlock);
+//GCD - 在Main线程上运行
+#define kDISPATCH_MAIN_THREAD(mainQueueBlock) dispatch_async(dispatch_get_main_queue(), mainQueueBlock);
+//GCD - 开启异步线程
+#define kDISPATCH_GLOBAL_QUEUE_DEFAULT(globalQueueBlock) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), globalQueueBlocl);
+
+//设置 view 圆角和边框
+#define LRViewBorderRadius(View, Radius, Width, Color)\
+\
+[View.layer setCornerRadius:(Radius)];\
+[View.layer setMasksToBounds:YES];\
+[View.layer setBorderWidth:(Width)];\
+[View.layer setBorderColor:[Color CGColor]]
+
+//全局的一些东西
+#define kString_nil                         @""
+#define kString_Null                        @"null"
+#define kString_Null_IOS                    @"(null)"
+
+#define kParams_sex_none            @"none"   // 未设置
+#define kParams_sex_male            @"male"   // 先生
+#define kParams_sex_female          @"female" // 女士
+#define kParams_sex_none_2          @"-1"     // 未设置
+#define kParams_sex_male_1          @"1"      // 先生
+#define kParams_sex_female_0        @"0"      // 女士
+
+
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000 // 当前Xcode支持iOS8及以上
+#define SCREEN_WIDTH ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.width)
+#define SCREENH_HEIGHT ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale:[UIScreen mainScreen].bounds.size.height)
+#define SCREEN_SIZE ([[UIScreen mainScreen] respondsToSelector:@selector(nativeBounds)]?CGSizeMake([UIScreen mainScreen].nativeBounds.size.width/[UIScreen mainScreen].nativeScale,[UIScreen mainScreen].nativeBounds.size.height/[UIScreen mainScreen].nativeScale):[UIScreen mainScreen].bounds.size)
+#else
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREENH_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCREEN_SIZE [UIScreen mainScreen].bounds.size
+#endif
+
+//通知
+#define KNOTIFICATION_XuanChangyong @"KNOTIFICATION_XuanChangyong"   //发货地址常用
+#define KNOTIFICATION_addAndSetFaHuo @"KNOTIFICATION_addAndSetFaHuo"   //新增发货地址成功直接设置
+#define KNOTIFICATION_XuanChangyong1 @"KNOTIFICATION_XuanChangyong1"   //收货地址常用
+#define KNOTIFICATION_XuanKaiTong @"KNOTIFICATION_XuanKaiTong"   //发货地址开通
+#define KNOTIFICATION_XuanKaiTong1 @"KNOTIFICATION_XuanKaiTong1"   //收货地址开通
+
+#define KNOTIFICATION_fahuolist @"KNOTIFICATION_fahuolist"   //
+#define KNOTIFICATION_noPassWord @"KNOTIFICATION_noPassWord"   //
+
+
+#define KNOTIFICATION_zhifu @"KNOTIFICATION_zhifu"   //支付结果
+
+//机型
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+//设备判断
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断设备系统是否是9.0或以上
+#define IOS_VERSION_9_OR_ABOVE (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)? (YES):(NO))
+
+//判断设备系统是否是9.0以上（不含9.0）
+#define IOS_VERSION_8_OR_ABOVE (([[[UIDevice currentDevice] systemVersion] floatValue] <9.0)? (YES):(NO))
+
+//字体相关
+//根据设备不同  返回不同的字号
+
+static inline int sizeValue(int sizefont) {
+    
+    if(kDevice_Is_iPhone5)
+        
+    {
+        
+        if(IOS_VERSION_9_OR_ABOVE)
+            
+            return  sizefont-1;
+        
+        return sizefont;
+        
+    }
+    else if (kDevice_Is_iPhone6)
+        
+    {
+        
+        if(IOS_VERSION_9_OR_ABOVE)
+            
+            return  sizefont+1;
+        
+        return sizefont+2;
+        
+    }
+    
+    else if (kDevice_Is_iPhone6Plus)
+        
+    {
+        
+        if(IOS_VERSION_9_OR_ABOVE)
+            
+            return  sizefont+2;
+        
+        return sizefont+3;
+        
+    }else
+        
+    {
+        
+        if(IOS_VERSION_9_OR_ABOVE)
+            
+            return  sizefont+1;
+        
+        return sizefont+2;
+        
+    }
+    
+}
+
+
+
+//#define titleFont1 [UIFont systemFontOfSize:16]
+//#define viewFont1 [UIFont systemFontOfSize:14]
+//#define viewFont2 [UIFont systemFontOfSize:13]
+//#define viewFont3 [UIFont systemFontOfSize:12]
+//#define viewFont4 [UIFont systemFontOfSize:11]
+//#define viewFont5 [UIFont systemFontOfSize:10]
+//#define viewFont6 [UIFont systemFontOfSize:8]
+
+#define titleFont1 [UIFont systemFontOfSize:sizeValue(17)]
+#define viewFont1 [UIFont systemFontOfSize:sizeValue(15)]
+#define viewFont2 [UIFont systemFontOfSize:sizeValue(14)]
+#define viewFont3 [UIFont systemFontOfSize:sizeValue(13)]
+#define viewFont4 [UIFont systemFontOfSize:sizeValue(12)]
+#define viewFont5 [UIFont systemFontOfSize:sizeValue(11)]
+#define viewFont6 [UIFont systemFontOfSize:sizeValue(10)]
+
+//HUD时间
+#define hudtime 1.5
+//正常字体
+#define  FontSize(sizefont)  [UIFont systemFontOfSize:sizeValue(sizefont)]
+//加粗字体
+#define  FontBoldSize(sizefont)  [UIFont boldSystemFontOfSize:sizeValue(sizefont)]
+
+//颜色相关
+#define RGBA_COLOR(R, G, B, A) [UIColor colorWithRed:((R) / 255.0f) green:((G) / 255.0f) blue:((B) / 255.0f) alpha:A]
+#define RGB_COLOR(R, G, B) [UIColor colorWithRed:((R) / 255.0f) green:((G) / 255.0f) blue:((B) / 255.0f) alpha:1.0f]
+
+
+#define APP_DELEGATE() ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+#define titleViewColor [UIColor whiteColor]
+//#define bgViewColor [UIColor colorWithHexString:kcolorBg alpha:1]
+#define bgViewColor [UIColor colorWithRed:238/255.0 green:239/255.0 blue:240/255.0 alpha:1]
+#define fontColor [UIColor colorWithRed:74/255.0 green:74/255.0 blue:74/255.0 alpha:1]
+#define fontHuiColor [UIColor colorWithRed:167/255.0 green:167/255.0 blue:167/255.0 alpha:1]
+#define fontOrangeColor [UIColor colorWithRed:246/255.0 green:156/255.0 blue:86/255.0 alpha:1]
+
+#define lvColor [UIColor colorWithRed:43/255.0 green:177/255.0 blue:163/255.0 alpha:1]
+
+
+//位置适配
+#define IsIOS7 ([[[UIDevice currentDevice] systemVersion]  floatValue] >= 7)
+#define isIOS8 ([[[UIDevice currentDevice] systemVersion]  floatValue] >= 8)
+#define isIOS10 (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_9_x_Max)?(YES):(NO)
+
+
+
+//导航高度
+#define titleViewHeight 44.0 //导航高度
+#define statusViewHeight (IsIOS7 ? 20 : 0) //状态栏高度
+#define TabbarHeight 49 //tab高度
+
+
+#define CGRectMake_Auto(x, y, w, h) CGRectMake((x * APP_DELEGATE().autoSizeScaleX), (y * APP_DELEGATE().autoSizeScaleY), (w * APP_DELEGATE().autoSizeScaleX), (h * APP_DELEGATE().autoSizeScaleY))
+
+#define CGRECT_NO_NAV(x, y, w, h) CGRectMake((x), (y + (IsIOS7 ? 20 : 0)), (w), (h))
+#define CGRECT_HAVE_NAV(x, y, w, h) CGRectMake((x), (y + (IsIOS7 ? 64 : 0)), (w), (h))
+
+//cook
+#define kUserDefaultsCookie @"kUserDefaultsCookie"
+
+
+
+
+//微信支付
+#define APP_ID          @"wxb8618395e196657e"               //APPID
+//商户号
+#define MCH_ID          @"1395838802"
+//秘钥
+#define PARTNER_ID      @"8AE576E7496F53E742F8F02AA7954D20"
+//支付结果回调页面
+#define NOTIFY_URL      @"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php"
+//获取服务器端支付数据地址（商户自定义）
+#define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
+
+#define kLoginUser     @"kLoginUser"       // 当前用户token等
+#define kUserInfo     @"kUserInfo"       // 当前用户信息 如是否实名认证
+
+#define pageSize 10
+
+//@protocol ApplyCollectingBatchViewControllerDelegate <NSObject>
+//@optional
+//- (void)showTip:(NSString *)Type;
+//@end
+//正式发布版
+//#define ms_driverServerUrl @"http://driver.yunlaila.com.cn"
+//#define customerServerUrl @"http://customer.yunlaila.com.cn"
+//#define accountServerUrl @"http://account.yunlaila.com.cn"
+
+
+//外网演示版
+//#define customerServerUrl @"http://demo.yunlaila.com.cn"
+//#define ms_driverServerUrl @"http://demo.yunlaila.com.cn"
+//#define accountServerUrl @"http://demo.yunlaila.com.cn"
+
+//开发版地址
+//#define customerServerUrl @"http://192.168.0.223" //彤哥机子
+#define customerServerUrl @"http://192.168.0.222" //军哥机子
+#define ms_driverServerUrl @"http://192.168.0.222"
+#define accountServerUrl @"http://192.168.0.195"
+
+
+//极光推送
+#define pushAppKey @"9d13fd030c6ec33b3a1c572a"
+#define pushChannel @"Publish channel"
+
+
+//测试
+#define testURL [NSString stringWithFormat:@"%@/ms_driver/driver/appversion.do", customerServerUrl]
+
+
+//客户端通用
+#define commonURL [NSString stringWithFormat:@"%@/customer/common/data.do", customerServerUrl]
+
+//用户新增收货地址
+#define SAVERECEIPTADDRESS @"hex_client_receiptaddress_save_function";
+//根据条件查询收货地址
+#define QUERYRECEIPTADDRESS @"hex_client_queryReceiptByCondition";
+//修改收货地址信息
+#define UPDATERECEIPTADDRESS @"hex_client_receiptaddress_update";
+//删除收货地址信息
+#define DELETERECEIPTADDRESS @"hex_client_receiptaddress_delete";
+//收货区域查询
+#define RECEIPTREGION @"hex_region_queryAllReceiptRegionFunction";
+//优惠券
+#define COUPON @"hex_client_getCouponMemberListFunction";
+
+
+//司机端通用
+#define ms_driverURL [NSString stringWithFormat:@"%@/ms_driver/common/data.do", ms_driverServerUrl]
+//上传图片
+#define file_uploadURL [NSString stringWithFormat:@"%@/account/common/file_upload.do", accountServerUrl]
+//获取验证码
+#define verificationCodURL [NSString stringWithFormat:@"%@/ms_driver/driver/verfication.do", ms_driverServerUrl]
+//登录
+#define loginURL [NSString stringWithFormat:@"%@/ms_driver/driver/login.do", ms_driverServerUrl]
+//登录by密码
+#define loginByPwdURL [NSString stringWithFormat:@"%@/ms_driver/driver/loginByPwd.do", ms_driverServerUrl]
+//忘记密码1
+#define forgetLoginPwdStep1URL [NSString stringWithFormat:@"%@/ms_driver/driver/forgetLoginPwdStep1.do", ms_driverServerUrl]
+//忘记密码2
+#define forgetLoginPwdStep2URL [NSString stringWithFormat:@"%@/ms_driver/driver/forgetLoginPwdStep2.do", ms_driverServerUrl]
+
+
+/**
+ * 功能号
+ */
+
+//接单设置
+#define SETTING @"hex_driver_indentSet";
+//司机取消订单
+#define DRIVERCANCLEORDER @"hex_driver_indent_cancelIndentFunction";
+//送货运单完成
+#define TASKBILLCOMPLETE @"hex_driver_sendWaybillComplete";
+//获取接单设置
+#define GETSETTING @"hex_driver_getIndentSet";
+//司机上下班
+#define WORK @"hex_driver_workStatusUpdate";
+//转货列表
+#define TURNGOODSLIST @"hex_driver_transferGoods";
+//司机端接单数量接口
+#define GETDRIVERINDENTNUM @"hex_driver_indentNum";
+//司机查询接单记录
+#define GETRECIVEHISTORYLIST @"hex_driver_ownIndentList";
+//获取司机信息
+#define GETDRIVERSTATUS @"hex_driver_driverInfo";
+//保存司机经纬度
+#define SAVEPOSITION @"hex_driver_position";
+//获取送货任务
+#define GETNEWORDERSDETAIL @"hex_driver_queryDriverTask";
+//获取收货任务
+#define TASKGETNEW @"hex_driver_queryIndentById";
+//校验客户地址
+#define UPDATEPOSTION @"hex_driver_updateIndentPosition";
+//保存修改开单
+#define ADDWAYBILL @"hex_driver_addWaybill";
+//获取收货地址
+#define RECEIVADDRESS @"hex_receipt_address_by_id";
+//收费标准
+#define CHARGESTANDAR @"hex_get_charge_standar";
+//查询运单
+#define QUERYWAYBILL @"hex_driver_queryWaybill";
+//收货地址列表
+#define ADDRESSLIST @"hex_driver_receipt_address_list";
+//获取收货区域数据
+#define GETRECEIPTADDRESS @"hex_driver_receipt_region";
+//保存收货区域数据
+#define SAVERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_add";
+//作废开单
+#define CANCLEWAYBILL @"hex_driver_waybillCancellation";
+//消息中心
+#define MSGCENTER @"hex_message_list";
+//查询转货区域
+#define TRANSFERAER @"hex_driver_query_mquyu";
+////查询转货网点
+//#define TRANSFERAERBR @"hex_driver_allTransferBr";
+//获取转货网点
+#define GETTURNADDBAR @"hex_driver_allTransferBr";
+//司机转货
+#define TRANSFEROPER @"hex_driver_transferOper";
+//删除收货地址
+#define DELETERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_delete";
+//修改收货地址
+#define UPDATERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_update";
+//历史货物价格
+#define CHOISEGOODSPRICE @"hex_driver_goodsPrice";
+//司机人为接受或拒绝订单操作
+#define DRIVERCONFIRMTASK @"hex_driver_confirmTask";
+//运单明细列表（包含上门接货和送货上门的订单）
+#define GETTASKDETAIL @"hex_driver_indent_waybills";
+//接货任务完成操作
+#define TASKCOMPLETE @"hex_driver_indentComplete";
+//查询司机任务列表（1条数据）
+#define GETNEWTASK @"hex_driver_task_queryMyWaitStateTask";
+//查询转货清单明细
+#define TURNGOODSDETAIL @"hex_driver_transferDetailListItem";
+//上传图片
+#define TURNDETAILPICTURE @"hex_driver_addDetaiListPicture";
+//取消转货
+#define TURNDETAILCANCLE @"hex_driver_cancleTransferDetail";
+//根据线路名称查询线路上的车辆信息
+#define GETCARBYLINE @"hex_driver_allocate_transport_queryCarByLineNameFunction";
+//配载操作
+#define STOWAGE @"hex_driver_allocate_transportOper";
+//根据司机查询该司机配载的列表
+#define GETSTOWAGELIST @"hex_driver_allocate_transport_queryByDriverIdFunction";
+//取消配载
+#define CANCLESTOWAGE @"hex_driver_allocate_transport_cancleFunction";
+//根据起点城市和终点城市，查询价格和片区电话
+#define QUERYPRICEANDPHONEBYAREA @"hex_driver_waybill_queryPriceAndPhoneByAreaFunction";
+//退出登录
+#define LOGINGOUT @"hex_driver_driverLogoutFunction";
+//修改密码
+#define UPDATEPWD @"hex_driver_updatePwdFunction";
+//查询线路
+#define QUERYROUTE @"hex_other_queryNetworkPhoneByNameFunction";
+//可转任务
+#define CHANGETASK @"hex_driver_task_queryYesChangeFunction";
+//区域司机
+#define VALIDDRIVER @"hex_driver_task_queryValidDriverByIndentIdFunction";
+//司机转单操作
+#define TASKCHANGE @"hex_driver_task_changeFunction";
+//获取协议价
+#define GETREFERENCEPRICE @"hex_driver_waybill_queryAgreementPriceFunction";
+
+
