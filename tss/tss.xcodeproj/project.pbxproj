@@ -151,6 +151,7 @@
 		84E146331E641D13006CC987 /* rccz_shenghuochaxun@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E146311E641D13006CC987 /* rccz_shenghuochaxun@2x.png */; };
 		84E146341E641D13006CC987 /* rccz_shenghuochaxun@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E146321E641D13006CC987 /* rccz_shenghuochaxun@3x.png */; };
 		84E146381E641DF8006CC987 /* SurplusGoods1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E146371E641DF8006CC987 /* SurplusGoods1ViewController.m */; };
+		84E1463B1E642200006CC987 /* SurplusGoods2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E1463A1E642200006CC987 /* SurplusGoods2ViewController.m */; };
 		84E910B51E5BEDCF0061CFBA /* ReimbursementFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E910B41E5BEDCF0061CFBA /* ReimbursementFlowViewController.m */; };
 		84E910B91E5C14410061CFBA /* StevedoreManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E910B81E5C14410061CFBA /* StevedoreManageViewController.m */; };
 		84E910BC1E5C1ACD0061CFBA /* AddStevedoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E910BB1E5C1ACD0061CFBA /* AddStevedoreViewController.m */; };
@@ -560,6 +561,8 @@
 		84E146321E641D13006CC987 /* rccz_shenghuochaxun@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rccz_shenghuochaxun@3x.png"; sourceTree = "<group>"; };
 		84E146361E641DF8006CC987 /* SurplusGoods1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurplusGoods1ViewController.h; sourceTree = "<group>"; };
 		84E146371E641DF8006CC987 /* SurplusGoods1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurplusGoods1ViewController.m; sourceTree = "<group>"; };
+		84E146391E642200006CC987 /* SurplusGoods2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurplusGoods2ViewController.h; sourceTree = "<group>"; };
+		84E1463A1E642200006CC987 /* SurplusGoods2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurplusGoods2ViewController.m; sourceTree = "<group>"; };
 		84E910B31E5BEDCF0061CFBA /* ReimbursementFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReimbursementFlowViewController.h; sourceTree = "<group>"; };
 		84E910B41E5BEDCF0061CFBA /* ReimbursementFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReimbursementFlowViewController.m; sourceTree = "<group>"; };
 		84E910B71E5C14410061CFBA /* StevedoreManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StevedoreManageViewController.h; sourceTree = "<group>"; };
@@ -1349,6 +1352,8 @@
 			children = (
 				84E146361E641DF8006CC987 /* SurplusGoods1ViewController.h */,
 				84E146371E641DF8006CC987 /* SurplusGoods1ViewController.m */,
+				84E146391E642200006CC987 /* SurplusGoods2ViewController.h */,
+				84E1463A1E642200006CC987 /* SurplusGoods2ViewController.m */,
 			);
 			name = "剩货查询";
 			sourceTree = "<group>";
@@ -2896,6 +2901,7 @@
 				84FFC4381E52A09D00313370 /* UIWebView+AFNetworking.m in Sources */,
 				84FFC4551E52A09D00313370 /* MJPhoto.m in Sources */,
 				84FFC4C91E52A0A900313370 /* UIColor+Utility.m in Sources */,
+				84E1463B1E642200006CC987 /* SurplusGoods2ViewController.m in Sources */,
 				84FFC49A1E52A09D00313370 /* UIView+Extension.m in Sources */,
 				84FFC4281E52A09D00313370 /* AFHTTPSessionManager.m in Sources */,
 				84FFC4471E52A09D00313370 /* IQToolbar.m in Sources */,
