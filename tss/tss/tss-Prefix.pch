@@ -321,7 +321,6 @@ static inline int sizeValue(int sizefont) {
 #define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
 
 #define kLoginUser     @"kLoginUser"       // 当前用户token等
-#define kUserInfo     @"kUserInfo"       // 当前用户信息 如是否实名认证
 
 #define pageSize 10
 
@@ -342,9 +341,9 @@ static inline int sizeValue(int sizefont) {
 
 //开发版地址
 //#define customerServerUrl @"http://192.168.0.223" //彤哥机子
-#define customerServerUrl @"http://192.168.0.222" //军哥机子
-#define ms_driverServerUrl @"http://192.168.0.222"
-#define accountServerUrl @"http://192.168.0.195"
+#define TSSServerUrl @"http://192.168.0.222" //军哥机子
+//#define ms_driverServerUrl @"http://192.168.0.222"
+//#define accountServerUrl @"http://192.168.0.195"
 
 
 //极光推送
@@ -352,142 +351,13 @@ static inline int sizeValue(int sizefont) {
 #define pushChannel @"Publish channel"
 
 
-//测试
-#define testURL [NSString stringWithFormat:@"%@/ms_driver/driver/appversion.do", customerServerUrl]
-
-
 //客户端通用
-#define commonURL [NSString stringWithFormat:@"%@/customer/common/data.do", customerServerUrl]
+#define commonURL [NSString stringWithFormat:@"%@/tss/mobile/data.do", TSSServerUrl]
 
-//用户新增收货地址
-#define SAVERECEIPTADDRESS @"hex_client_receiptaddress_save_function";
-//根据条件查询收货地址
-#define QUERYRECEIPTADDRESS @"hex_client_queryReceiptByCondition";
-//修改收货地址信息
-#define UPDATERECEIPTADDRESS @"hex_client_receiptaddress_update";
-//删除收货地址信息
-#define DELETERECEIPTADDRESS @"hex_client_receiptaddress_delete";
-//收货区域查询
-#define RECEIPTREGION @"hex_region_queryAllReceiptRegionFunction";
-//优惠券
-#define COUPON @"hex_client_getCouponMemberListFunction";
-
-
-//司机端通用
-#define ms_driverURL [NSString stringWithFormat:@"%@/ms_driver/common/data.do", ms_driverServerUrl]
-//上传图片
-#define file_uploadURL [NSString stringWithFormat:@"%@/account/common/file_upload.do", accountServerUrl]
-//获取验证码
-#define verificationCodURL [NSString stringWithFormat:@"%@/ms_driver/driver/verfication.do", ms_driverServerUrl]
-//登录
-#define loginURL [NSString stringWithFormat:@"%@/ms_driver/driver/login.do", ms_driverServerUrl]
 //登录by密码
-#define loginByPwdURL [NSString stringWithFormat:@"%@/ms_driver/driver/loginByPwd.do", ms_driverServerUrl]
-//忘记密码1
-#define forgetLoginPwdStep1URL [NSString stringWithFormat:@"%@/ms_driver/driver/forgetLoginPwdStep1.do", ms_driverServerUrl]
-//忘记密码2
-#define forgetLoginPwdStep2URL [NSString stringWithFormat:@"%@/ms_driver/driver/forgetLoginPwdStep2.do", ms_driverServerUrl]
+#define loginByPwdURL [NSString stringWithFormat:@"%@/tss/mobile/login_pwd.do", TSSServerUrl]
 
 
-/**
- * 功能号
- */
 
-//接单设置
-#define SETTING @"hex_driver_indentSet";
-//司机取消订单
-#define DRIVERCANCLEORDER @"hex_driver_indent_cancelIndentFunction";
-//送货运单完成
-#define TASKBILLCOMPLETE @"hex_driver_sendWaybillComplete";
-//获取接单设置
-#define GETSETTING @"hex_driver_getIndentSet";
-//司机上下班
-#define WORK @"hex_driver_workStatusUpdate";
-//转货列表
-#define TURNGOODSLIST @"hex_driver_transferGoods";
-//司机端接单数量接口
-#define GETDRIVERINDENTNUM @"hex_driver_indentNum";
-//司机查询接单记录
-#define GETRECIVEHISTORYLIST @"hex_driver_ownIndentList";
-//获取司机信息
-#define GETDRIVERSTATUS @"hex_driver_driverInfo";
-//保存司机经纬度
-#define SAVEPOSITION @"hex_driver_position";
-//获取送货任务
-#define GETNEWORDERSDETAIL @"hex_driver_queryDriverTask";
-//获取收货任务
-#define TASKGETNEW @"hex_driver_queryIndentById";
-//校验客户地址
-#define UPDATEPOSTION @"hex_driver_updateIndentPosition";
-//保存修改开单
-#define ADDWAYBILL @"hex_driver_addWaybill";
-//获取收货地址
-#define RECEIVADDRESS @"hex_receipt_address_by_id";
-//收费标准
-#define CHARGESTANDAR @"hex_get_charge_standar";
-//查询运单
-#define QUERYWAYBILL @"hex_driver_queryWaybill";
-//收货地址列表
-#define ADDRESSLIST @"hex_driver_receipt_address_list";
-//获取收货区域数据
-#define GETRECEIPTADDRESS @"hex_driver_receipt_region";
-//保存收货区域数据
-#define SAVERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_add";
-//作废开单
-#define CANCLEWAYBILL @"hex_driver_waybillCancellation";
-//消息中心
-#define MSGCENTER @"hex_message_list";
-//查询转货区域
-#define TRANSFERAER @"hex_driver_query_mquyu";
-////查询转货网点
-//#define TRANSFERAERBR @"hex_driver_allTransferBr";
-//获取转货网点
-#define GETTURNADDBAR @"hex_driver_allTransferBr";
-//司机转货
-#define TRANSFEROPER @"hex_driver_transferOper";
-//删除收货地址
-#define DELETERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_delete";
-//修改收货地址
-#define UPDATERECEIPTADDRESS_DRIVER @"hex_driver_receipt_address_update";
-//历史货物价格
-#define CHOISEGOODSPRICE @"hex_driver_goodsPrice";
-//司机人为接受或拒绝订单操作
-#define DRIVERCONFIRMTASK @"hex_driver_confirmTask";
-//运单明细列表（包含上门接货和送货上门的订单）
-#define GETTASKDETAIL @"hex_driver_indent_waybills";
-//接货任务完成操作
-#define TASKCOMPLETE @"hex_driver_indentComplete";
-//查询司机任务列表（1条数据）
-#define GETNEWTASK @"hex_driver_task_queryMyWaitStateTask";
-//查询转货清单明细
-#define TURNGOODSDETAIL @"hex_driver_transferDetailListItem";
-//上传图片
-#define TURNDETAILPICTURE @"hex_driver_addDetaiListPicture";
-//取消转货
-#define TURNDETAILCANCLE @"hex_driver_cancleTransferDetail";
-//根据线路名称查询线路上的车辆信息
-#define GETCARBYLINE @"hex_driver_allocate_transport_queryCarByLineNameFunction";
-//配载操作
-#define STOWAGE @"hex_driver_allocate_transportOper";
-//根据司机查询该司机配载的列表
-#define GETSTOWAGELIST @"hex_driver_allocate_transport_queryByDriverIdFunction";
-//取消配载
-#define CANCLESTOWAGE @"hex_driver_allocate_transport_cancleFunction";
-//根据起点城市和终点城市，查询价格和片区电话
-#define QUERYPRICEANDPHONEBYAREA @"hex_driver_waybill_queryPriceAndPhoneByAreaFunction";
-//退出登录
-#define LOGINGOUT @"hex_driver_driverLogoutFunction";
-//修改密码
-#define UPDATEPWD @"hex_driver_updatePwdFunction";
-//查询线路
-#define QUERYROUTE @"hex_other_queryNetworkPhoneByNameFunction";
-//可转任务
-#define CHANGETASK @"hex_driver_task_queryYesChangeFunction";
-//区域司机
-#define VALIDDRIVER @"hex_driver_task_queryValidDriverByIndentIdFunction";
-//司机转单操作
-#define TASKCHANGE @"hex_driver_task_changeFunction";
-//获取协议价
-#define GETREFERENCEPRICE @"hex_driver_waybill_queryAgreementPriceFunction";
 
 

@@ -261,8 +261,8 @@ CGFloat buttonSpacerHeight = 0;
         [closeButton setTag:i];
 
         [closeButton setTitle:[buttonTitles objectAtIndex:i] forState:UIControlStateNormal];
-        [closeButton setTitleColor:titleViewColor forState:UIControlStateNormal];
-        [closeButton setTitleColor:titleViewColor forState:UIControlStateHighlighted];
+        [closeButton setTitleColor:lvColor forState:UIControlStateNormal];
+        [closeButton setTitleColor:lvColor forState:UIControlStateHighlighted];
         [closeButton.titleLabel setFont:[UIFont boldSystemFontOfSize:14.0f]];
         closeButton.titleLabel.numberOfLines = 0;
         closeButton.titleLabel.textAlignment = NSTextAlignmentCenter;

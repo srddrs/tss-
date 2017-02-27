@@ -26,30 +26,9 @@
     if (self)
     {
          imagesURLStrings = [[NSMutableArray alloc] init];
-        
+        [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
         daibans = [[NSMutableArray alloc] init];
        
-        
-        NSDictionary *threedict1 = @{
-                                     @"orderId" :[NSString stringWithFormat:@"%d",1] ,
-                                     @"name" :@"货量查询货量查询货量查询货量查询" ,
-                                     @"image" : @"cz_huoliangchaxun",
-                                     };
-        NSDictionary *threedict2 = @{
-                                     @"orderId" :[NSString stringWithFormat:@"%d",2] ,
-                                     @"name" :@"运输款上缴运输款上缴运输款上缴运输款上缴" ,
-                                     @"image" : @"cz_yunshukuanshangjiao",
-                                     };
-        
-        NSDictionary *threedict3 = @{
-                                     @"orderId" :[NSString stringWithFormat:@"%d",2] ,
-                                     @"name" :@"运输款上缴运输款上缴运输款上缴运输款上缴" ,
-                                     @"image" : @"cz_yunshukuanshangjiao",
-                                     };
-        
-//        [daibans addObject:threedict1];
-//         [daibans addObject:threedict2];
-//         [daibans addObject:threedict3];
         
     }
     return self;
@@ -59,7 +38,17 @@
 {
     [super viewWillAppear:animated];
 
-     [self getBanner];
+    NSDictionary *user =  [[NSUserDefaults standardUserDefaults] objectForKey:kLoginUser];
+    if (user==nil)
+    {
+        [AppTool presentDengLu:self];
+    }
+    else
+    {
+         [self getBanner];
+    }
+    
+    
 }
 
 - (void)getBanner
@@ -68,7 +57,7 @@
     
     //    [MBProgressHUD showMessag:@"" toView:self.view];
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                     @"hex_client_message_app_queryBannerFunction",@"funcId",
+                                     @"hex_personal_queryAppBannerFunction",@"funcId",
                                      @"1",@"banner_type",
                                      nil];
     
@@ -76,52 +65,6 @@
      {
          //         [MBProgressHUD hideHUDForView:self.view animated:YES];
          ResponseObject *obj =[ResponseObject yy_modelWithDictionary:responseObject];
-         if (obj.global.flag.intValue==-4001)
-         {
-             //             [MBProgressHUD showAutoMessage:@"登录失效，请重新登录。"];
-             //             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-             //                 sleep(2);
-             //                 dispatch_async(dispatch_get_main_queue(), ^{
-             //
-             //                     //清空保存的token等数据
-             //                     NSArray *cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage].cookies;
-             //                     for (int i = 0; i < [cookies count]; i++)
-             //                     {
-             //                         NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
-             //                         [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-             //
-             //                     }
-             //                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kLoginUser];
-             //                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserInfo];
-             //
-             //                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:kUserDefaultsCookie];
-             ////                     ((YLLTabBarController *)self.view.window.rootViewController).selectedIndex = 0;
-             ////                     [self.navigationController popToRootViewControllerAnimated:NO];
-             //                     [AppTool presentDengLu:self];
-             //
-             //                 });
-             //             });
-             [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
-             self.cycleScrollView.localizationImagesGroup = imagesURLStrings;
-             
-             return;
-         }
-         if (obj.global.flag.intValue==-4002)
-         {
-             //             [MBProgressHUD showAutoMessage:@"该功能暂时已关闭"];
-             return;
-         }
-         if (obj.global.flag.intValue==-4003)
-         {
-             //             [MBProgressHUD showAutoMessage:@"服务器异常，请稍后再试"];
-             return;
-         }
-         if (obj.global.flag.intValue!=1)
-         {
-             //             [MBProgressHUD showAutoMessage:@"服务器异常，请稍后再试"];
-             return;
-         }
-         
          if (((response *)obj.responses[0]).flag.intValue==1)
          {
              if(((response *)obj.responses[0]).items.count>0)
@@ -141,16 +84,7 @@
          }
          else
          {
-             //             NSRange range = [((response *)obj.responses[0]).message rangeOfString:@"UnknownHostException"];
-             //             if (range.location !=NSNotFound)
-             //             {
-             //                 [MBProgressHUD showError:@"网络异常" toView:self.view];
-             //             }
-             //             else
-             //             {
-             //                 [MBProgressHUD showError:((response *)obj.responses[0]).message toView:self.view];
-             //             }
-             [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
+        
              self.cycleScrollView.localizationImagesGroup = imagesURLStrings;
              
          }
@@ -159,8 +93,6 @@
      } Failure:^(NSError *error)
      {
          NSLog(@"%@",error);
-         //         [MBProgressHUD hideHUDForView:self.view animated:YES];
-         [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
          self.cycleScrollView.localizationImagesGroup = imagesURLStrings;
          
      }];
@@ -213,9 +145,9 @@
         _cycleScrollView.showPageControl = NO;
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"zhuye_banner2"];
         
-        //    [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner2"]];
-        //    [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
-        //    [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner3"]];
+            [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner2"]];
+            [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner1"]];
+            [imagesURLStrings addObject:[UIImage imageNamed:@"zhuye_banner3"]];
         _cycleScrollView.localizationImagesGroup = imagesURLStrings;
         _cycleScrollView.autoScrollTimeInterval = 4;
 

@@ -109,12 +109,150 @@ static NSString * const kAFNetworkingLockName = @"com.alamofire.networking.opera
         //将返回的数据转成json数据格式
         NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves | NSJSONReadingAllowFragments error:nil];
         
+        ResponseObject *obj =[ResponseObject yy_modelWithDictionary:result];
+        NSString *domain;
+        if (((response *)obj.responses[0]).flag.intValue==-1)
+        {
+            domain = @"常规的错误返回值";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10010)
+        {
+            domain = @"参数有误或不能为空";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10011)
+        {
+            domain = @"参数类型错误";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10012)
+        {
+            domain = @"参数格式错误";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10013)
+        {
+            domain = @"验证码错误";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10014)
+        {
+            domain = @"身份证号码格式错误";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10015)
+        {
+            domain = @"参数长度不符合";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-10016)
+        {
+            domain = @"参数有特殊字符";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20010)
+        {
+            domain = @"数据库操作错误";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20011)
+        {
+            domain = @"不存在该账户";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20012)
+        {
+            domain = @"已存在相同数据";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20013)
+        {
+            domain = @"添加超过限制";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20014)
+        {
+            domain = @"扣除数值超过原值了";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20015)
+        {
+            domain = @"验证失败";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20016)
+        {
+            domain = @"不存在该条要操作的数据";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20017)
+        {
+            domain = @"状态不正常";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20018)
+        {
+            domain = @"token无效";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20019)
+        {
+            domain = @"无数据";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20020)
+        {
+            domain = @"账户或密码出错";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20021)
+        {
+            domain = @"没有要改变的数据";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-20022)
+        {
+            domain = @"雇主或雇员没有购买过该城市的运费劵";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-30010)
+        {
+            domain = @"账户异常";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-30011)
+        {
+            domain = @"账户余额不足";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-30012)
+        {
+            domain = @"账户未通过实名认证";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-30013)
+        {
+            domain = @"数据不在有效时间内";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-40001)
+        {
+            domain = @"token无效";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-40002)
+        {
+            domain = @"该功能暂时无法访问";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-40003)
+        {
+            domain = @"服务器处理异常,请稍后再试";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-40004)
+        {
+            domain = @"请求的功能号为空或无效";
+        }
+        else if (((response *)obj.responses[0]).flag.intValue==-40005)
+        {
+            domain = @"登录失败多次,需要输入验证码";
+        }
+        else
+        {
+            domain = @"";
+            success(responseObject);
+        }
         //通过block，将数据回掉给用户
-        success(result);
+        if ([domain length]>0)
+        {
+            NSError *error = [NSError errorWithDomain:domain // 域名
+                                                 code:((response *)obj.responses[0]).flag.intValue           // 错误代码
+                                             userInfo:nil] ;        // 字典描述
+            failure(error);
+        }
+        else
+        {
+            success(result);
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
         //通过block,将错误信息回传给用户
+        NSLog(error.description);
         failure(error);
     }];
 }
@@ -404,12 +542,149 @@ static NSString * const kAFNetworkingLockName = @"com.alamofire.networking.opera
     [manager POST:url parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
+        ResponseObject *obj =[ResponseObject yy_modelWithDictionary:responseObject];
+        NSString *domain;
         
+        if (obj.global.flag.intValue==-1)
+        {
+            domain = @"常规的错误返回值";
+        }
+        else if (obj.global.flag.intValue==-10010)
+        {
+            domain = @"参数有误或不能为空";
+        }
+        else if (obj.global.flag.intValue==-10011)
+        {
+            domain = @"参数类型错误";
+        }
+        else if (obj.global.flag.intValue==-10012)
+        {
+            domain = @"参数格式错误";
+        }
+        else if (obj.global.flag.intValue==-10013)
+        {
+            domain = @"验证码错误";
+        }
+        else if (obj.global.flag.intValue==-10014)
+        {
+            domain = @"身份证号码格式错误";
+        }
+        else if (obj.global.flag.intValue==-10015)
+        {
+            domain = @"参数长度不符合";
+        }
+        else if (obj.global.flag.intValue==-10016)
+        {
+            domain = @"参数有特殊字符";
+        }
+        else if (obj.global.flag.intValue==-20010)
+        {
+            domain = @"数据库操作错误";
+        }
+        else if (obj.global.flag.intValue==-20011)
+        {
+            domain = @"不存在该账户";
+        }
+        else if (obj.global.flag.intValue==-20012)
+        {
+            domain = @"已存在相同数据";
+        }
+        else if (obj.global.flag.intValue==-20013)
+        {
+            domain = @"添加超过限制";
+        }
+        else if (obj.global.flag.intValue==-20014)
+        {
+            domain = @"扣除数值超过原值了";
+        }
+        else if (obj.global.flag.intValue==-20015)
+        {
+            domain = @"验证失败";
+        }
+        else if (obj.global.flag.intValue==-20016)
+        {
+            domain = @"不存在该条要操作的数据";
+        }
+        else if (obj.global.flag.intValue==-20017)
+        {
+            domain = @"状态不正常";
+        }
+        else if (obj.global.flag.intValue==-20018)
+        {
+            domain = @"token无效";
+        }
+        else if (obj.global.flag.intValue==-20019)
+        {
+            domain = @"无数据";
+        }
+        else if (obj.global.flag.intValue==-20020)
+        {
+            domain = @"账户或密码出错";
+        }
+        else if (obj.global.flag.intValue==-20021)
+        {
+            domain = @"没有要改变的数据";
+        }
+        else if (obj.global.flag.intValue==-20022)
+        {
+            domain = @"雇主或雇员没有购买过该城市的运费劵";
+        }
+        else if (obj.global.flag.intValue==-30010)
+        {
+            domain = @"账户异常";
+        }
+        else if (obj.global.flag.intValue==-30011)
+        {
+            domain = @"账户余额不足";
+        }
+        else if (obj.global.flag.intValue==-30012)
+        {
+            domain = @"账户未通过实名认证";
+        }
+        else if (obj.global.flag.intValue==-30013)
+        {
+            domain = @"数据不在有效时间内";
+        }
+        else if (obj.global.flag.intValue==-40001)
+        {
+            domain = @"token无效";
+        }
+        else if (obj.global.flag.intValue==-40002)
+        {
+            domain = @"该功能暂时无法访问";
+        }
+        else if (obj.global.flag.intValue==-40003)
+        {
+            domain = @"服务器处理异常,请稍后再试";
+        }
+        else if (obj.global.flag.intValue==-40004)
+        {
+            domain = @"请求的功能号为空或无效";
+        }
+        else if (obj.global.flag.intValue==-40005)
+        {
+            domain = @"登录失败多次,需要输入验证码";
+        }
+        else
+        {
+            domain = @"";
+            success(responseObject);
+        }
         //通过block，将数据回掉给用户
-        success(responseObject);
+        if ([domain length]>0)
+        {
+                NSError *error = [NSError errorWithDomain:domain // 域名
+                                        code:obj.global.flag.intValue           // 错误代码
+                                    userInfo:nil] ;        // 字典描述
+             failure(error);
+        }
+        else
+        {
+             success(responseObject);
+        }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+
         //通过block,将错误信息回传给用户
         NSLog(error.description);
         failure(error);

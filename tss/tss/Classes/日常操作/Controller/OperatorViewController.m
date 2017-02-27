@@ -17,6 +17,7 @@
 #import "StevedoreManageViewController.h"
 #import "AgencyViewController.h"
 #import "Rotate1ViewController.h"
+#import "SurplusGoods1ViewController.h"
 @interface OperatorViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,SDCycleScrollViewDelegate>
 {
    
@@ -92,8 +93,12 @@
                                      @"name" :@"转货运费" ,
                                      @"image" : @"rccz_feiyongqueren",
                                      };
-        
-        
+        NSDictionary *threedict11 = @{
+                                      @"orderId" :[NSString stringWithFormat:@"%d",11] ,
+                                      @"name" :@"剩货查询" ,
+                                      @"image" : @"rccz_shenghuochaxun",
+                                      };
+
         [anniuDatas addObject:threedict1];
         [anniuDatas addObject:threedict2];
         [anniuDatas addObject:threedict3];
@@ -104,6 +109,7 @@
         [anniuDatas addObject:threedict8];
         [anniuDatas addObject:threedict9];
         [anniuDatas addObject:threedict10];
+        [anniuDatas addObject:threedict11];
 
     }
     return self;
@@ -383,7 +389,11 @@
         Rotate1ViewController *vc = [[Rotate1ViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-
+    else if([[info objectForKey:@"orderId"] intValue]==11)
+    {
+        SurplusGoods1ViewController *vc = [[SurplusGoods1ViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     
         
  
